@@ -1,30 +1,29 @@
-export default function Login() {
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const form = event.target;
+
+
+export default function Signin() {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const user = { name, email };
         console.log(user)
-        await fetch('http://localhost:5001/users', {
+        await fetch('http://localhost:5001/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
-        })
-            .then(res => res.json())
+
+        }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 if (data.insertedId) {
-                    alert('User logged in successfully');
+                    alert('User signed in successfully');
                     form.reset();
                 }
-
             })
     }
-
-
     return (
         <div className="flex justify-center items-center mt-20">
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
