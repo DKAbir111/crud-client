@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Signin from './components/Signin';
 import Users from './components/Users';
+import Update from './components/Update';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ const router = createBrowserRouter([
         path: '/users',
         element: <Users />,
         loader: async () => await fetch('http://localhost:5001/users')
+      },
+      {
+        path: '/update/:id',
+        element: <Update />,
+        loader: async ({ params }) => await fetch(`http://localhost:5001/user/${params.id}`),
+
       }
     ]
   },
